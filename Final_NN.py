@@ -44,12 +44,12 @@ class neuralNetwork:
         #calculate the signals emerging from hidden layer
         hidden_outputs = self.activation_function(hidden_inputs)
         
-        #calculate signals into final output layer
+        #calculate signals to final output layer
         final_inputs = numpy.dot(self.who, hidden_outputs)
         #calculate signals emerging from final output layer
         final_outputs = self.activation_function(final_inputs)
         
-        #output layer error is the (target-actual)
+        #output layer error is the - target-actual
         output_errors = targets - final_outputs
         #hidden layer error is the output_errors, split by weights, recombined at hidden nodes
         hidden_errors = numpy.dot(self.who.T, output_errors)
@@ -63,6 +63,7 @@ class neuralNetwork:
         pass
     
     #query the neural network
+    #Functional query
     def query(self, inputs_list):
         #convert inputs list to 2d array
         inputs = numpy.array(inputs_list, ndmin=2).T
@@ -81,11 +82,15 @@ class neuralNetwork:
     
 #number of input, hidden and output nodes
 input_nodes = 784
-hidden_nodes = 100
-output_nodes = 10
+#hidden
+#hidden_nodes = 100
+hidden_nodes = 10
+#ouput
+#output_nodes = 10
+output_nodes = 2
 
-#learning rate is 0.3
-learning_rate = 0.3
+#learning rate is ~0.1
+learning_rate = 0.1725
 
 #create instance of neural network
 n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
@@ -118,6 +123,7 @@ test_data_file.close()
 #get the first test record
 all_values = test_data_list[0].split(',')
 
+#Fit input data
 image_array = numpy.asfarray(all_values[1:]).reshape((28,28))
 
 
