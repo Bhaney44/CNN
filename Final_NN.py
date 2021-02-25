@@ -6,8 +6,11 @@ Created on Wed Aug 22 13:06:51 2018
 @author: brianhaney
 """
 
+#Copyright 2021 Brian Haney
+
+#Import NUMPUY
 import numpy
-# scripy.special for the sigmoid function expit()
+# sigmoid function expit()
 import scipy.special
 # library for plotting arrays
 import matplotlib.pyplot
@@ -33,7 +36,7 @@ class neuralNetwork:
         
         pass
     
-    #Train neural network
+    #Train network
     def train(self, inputs_list, targets_list):
         #convert inputs list to 2d array
         inputs = numpy.array(inputs_list, ndmin=2).T
