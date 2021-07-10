@@ -92,10 +92,10 @@ hidden_nodes = 10
 #output_nodes = 10
 output_nodes = 2
 
-#learning rate is ~0.1
+#learning rate is usually ~0.1
 learning_rate = 0.1725
 
-#create instance of neural network
+#create single instance of neural network
 n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
 #load the mnist training data CSV file into a list
@@ -110,6 +110,7 @@ for record in training_data_list:
     #split the record by the ',' commas
     all_values = record.split(',')
     #scale and shift the inputs
+    # adjust as necessary for optimizing performance and variable input array
     inputs = (numpy.asfarray(all_values[1:]) / 225.0 * 0.99) + 0.01
     #create the target output values(all 0.01, except the desired label which is 0.99)
     targets = numpy.zeros(output_nodes) + 0.01
@@ -132,6 +133,7 @@ image_array = numpy.asfarray(all_values[1:]).reshape((28,28))
 
 #test the neural network
 #scorecard for how well the network performs, initially empty 
+# for demonstrative purposes
 scorecard = []
 
 #go through all the records in the test data set
@@ -142,6 +144,7 @@ for record in test_data_list:
     correct_label = int(all_values[0])
     print(correct_label, "correct label")
     #scale and shift inputs
+    # scalable for performance
     inputs = (numpy.asfarray(all_values[1:])/ 255.0 * 0.99)+0.01
     #query the network
     outputs = n.query(inputs)
@@ -158,6 +161,7 @@ for record in test_data_list:
         pass
     pass
 
+# Print
 print(scorecard)
 
 #calculate the performance score, the fraction of correct answers
